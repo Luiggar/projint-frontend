@@ -52,10 +52,7 @@ const Funcionarioadd = () =>{
         });
     };
 
-    const editFunc = (e, id) => {
-        e.preventDefault();
-        navigate(`/edit/${id}`);
-      };
+
 
     const reset = (e) => {
         e.preventDefault();
