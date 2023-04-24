@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import ClientesServ from '../Services/ClientesServ';
 
 const ClienteLista = () => {
+  
 
   const navigate =useNavigate()
   const [loading, setLoading] = useState(true);
@@ -21,6 +22,7 @@ const ClienteLista = () => {
       setLoading(false);
     };
       fetchData();
+
   },[])
   
 const deleteFunc = (id) => {
@@ -69,7 +71,7 @@ const editPessoa = (e, id) => {
                 {console.log(pessoa)}
                 <th scope = "row" className='px-130 py-3 whitespace-nowrap'>{pessoa.nomePessoa}</th>
                 <td className='px-130 py-3 whitespace-nowrap'>{pessoa.numPessoa}</td>
-                <td className='px-130 py-3 whitespace-nowrap'>{pessoa.emailPessoa}</td>
+                <td className='px-130 py-3 whitespace-nowrap'>{pessoa.endereço.endereco}</td>
                 <td className='px-130 py-3 whitespace-nowrap text-center '>
                   <div className='  border-l-2 border-gray-800 py-0 h-full '>
                    <button className='w-20 me-5 bg-green-200 hover:bg-green-500 ' onClick={(e, id) => editPessoa(e, pessoa.id)}>Editar</button>

@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import FuncionarioServ from "../Services/FuncionarioServ";
 import { useNavigate } from "react-router-dom";
+import Cpfvalidação from "../Services/Cpfvalidação";
 
 
 const Funcionarioadd = () =>{
@@ -40,16 +41,43 @@ const Funcionarioadd = () =>{
           [name]: value
         }));
       }
+      const handlePhone = (e) => {
+        const { name, value } = e.target;
+        setFuncionario(prevState => ({
+          ...prevState,
+          pessoa: {
+            ...prevState.pessoa,
+            [name]: value.replace(/\D/g,"").substring(0-11).replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3') ,
+
+        }}));
+      }
+
+      const handleDoc = (e) => {
+        const { name, value } = e.target;
+        setFuncionario(prevState => ({
+          ...prevState,
+          pessoa: {
+            ...prevState.pessoa,
+            [name]: value.replace(/\D/g,"").substring(0-11).replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4') ,
+
+        }}));
+      }
+
 
     const saveFunc = (e) => {
         e.preventDefault();
-        FuncionarioServ.saveFucionario(funcionario).then((Response)=>{
-            console.log(Response);
-            navigate("/")
+        if (Cpfvalidação.validar(funcionario.pessoa.docPessoa)){
+            FuncionarioServ.saveFucionario(funcionario).then((Response)=>{
+                console.log(Response);
+                navigate("/")
+            }
+            ).catch((Error)=>{
+                console.log(Error);
+            });
+        }else{
+            alert("CPF invalido")
         }
-        ).catch((Error)=>{
-            console.log(Error);
-        });
+
     };
 
 
@@ -90,7 +118,7 @@ const Funcionarioadd = () =>{
             </div>
             <div className='items-center justify-center h-14 w-full my-4'> 
                 <label className='block'>Numero de contato:</label>
-                <input type='tel' className=' border border-black py-2 px-3' name="numPessoa" value={funcionario.pessoa.numPessoa} onChange={(e) => handleChange(e)}></input>
+                <input type='tel' className=' border border-black py-2 px-3' name="numPessoa" value={funcionario.pessoa.numPessoa} onChange={(e) => handlePhone(e)} maxLength={15}></input>
             </div>
             <div className='items-center justify-center h-14 w-full my-4'> 
                 <label className='block'>Email:</label>
@@ -98,7 +126,7 @@ const Funcionarioadd = () =>{
             </div>
             <div className='items-center justify-center h-14 w-full my-4'> 
                 <label className='block'>Documento:</label>
-                <input type='number' className=' border border-black py-2 px-3' value={funcionario.pessoa.docPessoa} name="docPessoa" onChange={(e) => handleChange(e)}></input>
+                <input type='text' className=' border border-black py-2 px-3' value={funcionario.pessoa.docPessoa} name="docPessoa" onChange={(e) => handleDoc(e)} maxLength={14}></input>
             </div>
             <div className='items-center justify-center h-14 w-full my-4'> 
                 <label className='block'>Data de Nascimento:</label>

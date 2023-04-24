@@ -49,6 +49,10 @@ const ClienteEdit = () =>{
             [name]: value
         }));
       }
+      const handlePhone = (e) => {
+        const value = e.target.value;
+        setPessoa({ ...pessoa, [e.target.name]: value.replace(/\D/g,"").substring(0-11).replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3') });
+      }
 
       const updateCliente = (e) => {
         e.preventDefault();
@@ -76,7 +80,7 @@ const ClienteEdit = () =>{
             </div>
             <div className='items-center justify-center h-14 w-full my-4'> 
                 <label className='block'>Numero de contato:</label>
-                <input type='tel' className=' border border-black py-2 px-3' name="numPessoa" value={pessoa.numPessoa} onChange={(e) => handleChange(e)}></input>
+                <input type='tel' className=' border border-black py-2 px-3' name="numPessoa" value={pessoa.numPessoa} onChange={(e) => handlePhone(e)}></input>
             </div>
             <div className='items-center justify-center h-14 w-full my-4'> 
                 <label className='block'>Email:</label>
@@ -84,7 +88,7 @@ const ClienteEdit = () =>{
             </div>
             <div className='items-center justify-center h-14 w-full my-4'> 
                 <label className='block'>Documento:</label>
-                <input type='number' className=' border border-black py-2 px-3' value={pessoa.docPessoa} name="docPessoa" onChange={(e) => handleChange(e)}></input>
+                <input type='text' className=' border border-black py-2 px-3' value={pessoa.docPessoa} name="docPessoa" onChange={(e) => handleChange(e)} readOnly></input>
             </div>
             <div className='items-center justify-center h-14 w-full my-4'> 
                 <label className='block'>Data de Nascimento:</label>
