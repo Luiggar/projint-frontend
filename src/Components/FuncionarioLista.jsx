@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from 'react'
+import React, {useState, useEffect } from 'react'
 import FuncionarioServ from '../Services/FuncionarioServ';
 import { useNavigate } from 'react-router-dom';
 
@@ -66,7 +66,9 @@ const editFunc = (e, id) => {
                 {funcionarios.map((funcionario)=>(
               <tr className='w-full border-slate-400 border-b' key={funcionario.id}>
                 {console.log(funcionario)}
-                <th scope = "row" className='px-130 py-3 whitespace-nowrap'>{funcionario.pessoa.nomePessoa}</th>
+                <th scope = "row" className='px-130 py-3 whitespace-nowrap'>{funcionario.pessoa.nomePessoa}
+                <p><img src={funcionario.imageblob} alt='Foto'  className=' ml-1 w-15 h-20'/></p>
+                </th>
                 <td className='px-130 py-3 whitespace-nowrap'>{funcionario.pessoa.numPessoa}</td>
                 <td className='px-130 py-3 whitespace-nowrap'>{funcionario.profFunc}</td>
                 <td className='px-130 py-3 whitespace-nowrap text-center '>
