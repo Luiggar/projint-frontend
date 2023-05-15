@@ -18,8 +18,8 @@ import ClienteVer from './Components/ClienteVer';
 
 function App() {
   return (
-    <><Navbar/>
-    <BrowserRouter>
+    < ><Navbar/>
+
       <Routes>
         <Route path="/" element={<FuncionarioLista />} />
         <Route path="/add" element={<Funcionarioadd />} />
@@ -30,7 +30,7 @@ function App() {
         <Route path='/cliente' element={<ClienteLista/>}/>
         <Route path='/cliente/:id' element={<ClienteVer/>}/>
       </Routes>
-    </BrowserRouter></>
+    </>
   )
 }
 

@@ -131,7 +131,7 @@ const Funcionarioadd = () =>{
       
 
     return (
-        <div className='flex h-auto max-w-xl shadow border mx-auto w-auto font-light tracking-widest grid-cols-2 gap-0'>
+        <div className='flex h-auto max-w-xl shadow border mx-auto w-auto font-light tracking-widest grid-cols-2 gap-0 bg-slate-100 dark:bg-gray-600 '>
         <div className="mx-auto">
           <label className='block -ml-10  text-center' for="foto" name="imageblob"><p className=' font-bold'>Foto </p></label>
           <img src={funcionario.imageblob} title="Foto" alt="Foto" className=" object-fill h-80 w-60 border-black border-2" ></img>
@@ -141,9 +141,7 @@ const Funcionarioadd = () =>{
           <label className='block'>Salario:</label>
           <input type='number' className=' border border-black py-2 px-3 w-60'  name="salFunc" value={funcionario.salFunc} onChange={(e) => handleChange(e)}></input>
           <p></p>
-          <button className='rounded bg-blue-300 hover:bg-blue-600 w-20 h-8 mr-24 mt-5 mb-4' onClick={() => navigate("/")} >Voltar</button>
-          <button className='rounded bg-red-300 hover:bg-red-600 w-20 h-8 -ml-4 '  onClick={reset}>Limpar</button>
-          
+          <button className='rounded bg-blue-400 hover:bg-blue-600 dark:bg-dblue dark:hover:bg-blue-800 w-20 h-8 mr-24 mt-5 mb-4' onClick={() => navigate("/")} >Voltar</button>   
         </div>
         
         
@@ -166,7 +164,7 @@ const Funcionarioadd = () =>{
                       <label className='block'>Bairo:</label>
                       <input type='text' className=' border border-black py-2 px-3 mb-2 w-60' name="bairo" value={funcionario.pessoa.endereço.bairo} onChange={(e) => handleChange(e)}></input>
                       <p></p>
-                      <button className='rounded bg-green-200 hover:bg-green-500 w-20 h-8 mt-3 ml-40 '  onClick={saveFunc}>Salvar</button>
+                      <button className='rounded bg-green-400 hover:bg-green-600 dark:bg-dgreen dark:hover:bg-green-800 w-20 h-8 mt-2 ml-40 '  onClick={saveFunc}>Salvar</button>
                   </div>
         </div>      
       </div>

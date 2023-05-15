@@ -42,9 +42,10 @@ const editFunc = (e, id) => {
   navigate(`/edit/${id}`);
 };
 
+
   
     return (
-      <div className='max-w-4xl shadow border relative overflow-x-auto mx-auto flex'>
+      <div className='max-w-4xl shadow border relative overflow-x-auto mx-auto flex bg-slate-100 dark:bg-gray-600 '>
           <table className=' w-full text-left'>
             <thead  >
               <tr className=' border-black border-2 '>
@@ -73,14 +74,15 @@ const editFunc = (e, id) => {
                 <td className='px-130 py-3 whitespace-nowrap'>{funcionario.profFunc}</td>
                 <td className='px-130 py-3 whitespace-nowrap text-center '>
                   <div className='  border-l-2 border-gray-800 py-0 h-full '>
-                   <button className='w-20 me-5 bg-green-200 hover:bg-green-500 ' onClick={(e, id) => editFunc(e, funcionario.id)}>Editar</button>
-                   <button className='w-20 me-5 bg-red-300 hover:bg-red-600' onClick={()=>deleteFunc(funcionario.id)}>Deletar</button>
-                   <button className='w-20 me-5 bg-blue-300 hover:bg-blue-600' onClick={(e, id) => verFunc(e, funcionario.id)}>Ver</button>
+                   <button className='w-20 me-5 rounded bg-green-400 hover:bg-green-600 dark:bg-dgreen dark:hover:bg-green-800 ' onClick={(e, id) => editFunc(e, funcionario.id)}>Editar</button>
+                   <button className='w-20 me-5 bg-red-400 hover:bg-red-600 dark:bg-crimsonn dark:hover:bg-red-800' onClick={()=>deleteFunc(funcionario.id)}>Deletar</button>
+                   <button className='w-20 me-5 bg-blue-400 hover:bg-blue-600 dark:bg-dblue dark:hover:bg-blue-800' onClick={(e, id) => verFunc(e, funcionario.id)}>Ver</button>
                   </div>
                 </td>
               </tr>))}
             </tbody>)}
           </table>
+          {}
       </div>
     )
 }

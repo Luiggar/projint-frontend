@@ -78,7 +78,7 @@ const Clienteadd = () =>{
       
 
     return (
-        <div className='flex max-w-4xl shadow border mx-auto w-auto font-light tracking-widest'>
+        <div className='flex max-w-4xl shadow border mx-auto w-auto font-light tracking-widest bg-slate-100 dark:bg-gray-600  '>
         <div className=' px-8 py-8 '>
             <div>
                 <h1 className=' text-2xl'>Adicionar Cliente</h1>
@@ -112,9 +112,8 @@ const Clienteadd = () =>{
                 <input type='text' className=' border border-black py-2 px-3' name="bairo" value={pessoa.endereço.bairo} onChange={(e) => handleChange(e)} required></input>
             </div>
             <div className='items-center justify-center h-14 w-full my-4'>
-                <button className='rounded bg-slate-400 hover:bg-slate-blue hover:text-white w-20 h-8 mr-5'  onClick={saveFunc}>Salvar</button>
-                <button className='rounded bg-slate-400 hover:bg-slate-blue hover:text-white w-20 h-8'  onClick={reset}>Limpar</button>
-                <button className='rounded bg-slate-400 hover:bg-slate-blue hover:text-white w-20 h-8 ml-5' onClick={() => navigate("/cliente")} >Voltar</button>
+                <button className='rounded bg-green-400 hover:bg-green-600 dark:bg-dgreen dark:hover:bg-green-800  w-20 h-8 mr-5'  onClick={saveFunc}>Salvar</button>
+                <button className='rounded bg-blue-400 hover:bg-blue-600 dark:bg-dblue dark:hover:bg-blue-800 w-20 h-8 ml-5' onClick={() => navigate("/cliente")} >Voltar</button>
             </div>
         </div>
     </div>

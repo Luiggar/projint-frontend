@@ -10,6 +10,7 @@ const ClienteLista = () => {
   const [loading, setLoading] = useState(true);
   const [pessoas, setPessoas] = useState(null);
 
+
   useEffect(() => {
     const fetchData = async () =>{
       setLoading(true);
@@ -25,16 +26,27 @@ const ClienteLista = () => {
 
   },[])
   
-const deleteFunc = (id) => {
-
-ClientesServ.deletePessoa(id).then((Response)=>{
-   console.log(Response);
-   window.location.reload();
+  const deleteHandler = (id) => {
+    if (ClientesServ.isFunc(id).Response) {
+      if (window.confirm("É um funcionario se deletar o cliente deletara o registro do funcionario tem certeza?")){
+        deletePessoa(id)
+      }
+    }else{
+      if (window.confirm("Quer mesmo deletar esse registro de ?")){
+        deletePessoa(id)
+      }   
+    }
   }
- ).catch((Error)=>{
-    console.log(Error);
- });
-};
+  
+  const deletePessoa = (id) => {
+    ClientesServ.deletePessoa(id).then((Response)=>{
+       console.log(Response);
+       window.location.reload();
+      }
+     ).catch((Error)=>{
+        console.log(Error);
+     });
+    };
 
 const verPessoa = (e, id) => {
   e.preventDefault();
@@ -47,7 +59,7 @@ const editPessoa = (e, id) => {
 
   
     return (
-      <div className='max-w-4xl shadow border relative overflow-x-auto mx-auto flex'>
+      <div className='max-w-4xl shadow border relative overflow-x-auto mx-auto flex bg-slate-100 dark:bg-gray-600 '>
           <table className=' w-full text-left'>
             <thead  >
               <tr className=' border-black border-2 '>
@@ -56,10 +68,10 @@ const editPessoa = (e, id) => {
                 <th scope='col' className='px-130 py-3'>Endereço</th>
                 <th scope='col' className='px-130 py-3 text-center'>Ações</th>
               </tr>
-              <tr className=' hover:bg-red-600 border-2 border-black text-left justify-center mt-24'>
+              <tr className='dark:hover:bg-red-800 hover:bg-red-600 border-2 border-black text-left justify-center mt-24'>
                 <th>
                   <button className=' w-full' onClick={() => navigate("/cliente/add")}>
-                      + <span className='text-white'>Adicionar</span>
+                      + <span >Adicionar</span>
                   </button>
                 </th>
               </tr>
@@ -74,9 +86,9 @@ const editPessoa = (e, id) => {
                 <td className='px-130 py-3 whitespace-nowrap'>{pessoa.endereço.endereco}</td>
                 <td className='px-130 py-3 whitespace-nowrap text-center '>
                   <div className='  border-l-2 border-gray-800 py-0 h-full '>
-                   <button className='w-20 me-5 bg-green-200 hover:bg-green-500 ' onClick={(e, id) => editPessoa(e, pessoa.id)}>Editar</button>
-                   <button className='w-20 me-5 bg-red-300 hover:bg-red-600' onClick={()=>deleteFunc(pessoa.id)}>Deletar</button>
-                   <button className='w-20 me-5 bg-blue-300 hover:bg-blue-600' onClick={(e, id) => verPessoa(e, pessoa.id)}>Ver</button>
+                   <button className='w-20 me-5 rounded bg-green-400 hover:bg-green-600 dark:bg-dgreen dark:hover:bg-green-800 ' onClick={(e, id) => editPessoa(e, pessoa.id)}>Editar</button>
+                   <button className='w-20 me-5 rounded bg-red-400 hover:bg-red-600 dark:bg-crimsonn dark:hover:bg-red-800' onClick={(id) => deleteHandler(pessoa.id)}>Deletar</button>
+                   <button className='w-20 me-5 rounded bg-blue-400 hover:bg-blue-600 dark:bg-dblue dark:hover:bg-blue-800' onClick={(e, id) => verPessoa(e, pessoa.id)}>Ver</button>
                   </div>
                 </td>
               </tr>))}
@@ -84,7 +96,6 @@ const editPessoa = (e, id) => {
           </table>
       </div>
     )
-}
-
+                }
 
 export default ClienteLista;

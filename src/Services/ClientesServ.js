@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { Axios } from "axios";
 
 const URL_DE_CLIENTE = "http://localhost:8080/api/v1/cliente";
 
@@ -19,6 +19,9 @@ class ClientesServ{
     }
     updatePessoa(pessoa, id){
         return axios.post(URL_DE_CLIENTE+"/" + id, pessoa);
+    }
+    isFunc(id) {
+        return axios.put(URL_DE_CLIENTE+ "/" + id)
     }
 }
 

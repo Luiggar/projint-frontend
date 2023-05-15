@@ -43,7 +43,7 @@ const ClienteVer = () => {
       },[])
 
     return (
-        <div className='flex h-80 max-w-4xl shadow border mx-auto w-auto font-light tracking-widest'>
+        <div className='flex h-80 max-w-4xl shadow border mx-auto w-auto font-light tracking-widest bg-slate-100 dark:bg-gray-600 '>
             <div className=' px-8 py-8 mx-15 '>
                 <div className='mx-auto items-center justify-center h-14 w-full my-4'> 
                     <label className='block' for="nome" name="nomePessoa"><span className=' font-bold'>Nome Completo: </span>{pessoa.nomePessoa}</label>
@@ -53,8 +53,8 @@ const ClienteVer = () => {
                     <label className='block' for="birth" name="birthPessoa"><span className=' font-bold'>Data de Nascimento: </span>{pessoa.birthPessoa}</label>
                     <label className='block' for="rua" name="ruaPessoa"><span className=' font-bold'>Rua: </span>{pessoa.endereço.endereco}</label>
                     <label className='block' for="sal" name="salPessoa"><span className=' font-bold'>Bairo: </span>{pessoa.endereço.bairo}</label>
-                    <button className='w-20 bg-green-200 hover:bg-green-500 mr-40' onClick={(e, id)=>editFunc(e, pessoa.id)}>Editar</button>
-                    <span className=' right-10'><button className='w-70 px-3 me-5 bg-teal-200 hover:bg-teal-400'onClick={() => navigate("/cliente")}>Voltar a lista</button></span>
+                    <button className='w-20 bg-green-400 hover:bg-green-600 dark:bg-dgreen dark:hover:bg-green-800 mr-40' onClick={(e, id)=>editFunc(e, pessoa.id)}>Editar</button>
+                    <span className=' right-10'><button className='w-70 px-3 me-5 bg-blue-400 hover:bg-blue-600 dark:bg-dblue dark:hover:bg-blue-800'onClick={() => navigate("/cliente")}>Voltar a lista</button></span>
                 </div>
             </div>
         </div>
