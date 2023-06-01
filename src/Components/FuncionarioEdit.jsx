@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 
 const FuncionarioEdit = () =>{
-
+    
     const[loading,setLoading] =useState(true);
     const { id } = useParams();
     const navigate = useNavigate()
@@ -19,7 +19,7 @@ const FuncionarioEdit = () =>{
             emailPessoa : "",
             docPessoa: "",
             birthPessoa : "",
-            endereço : {
+            endereco : {
                 idendereco: "",
                 endereco: "",
                 bairo: ""
@@ -124,7 +124,7 @@ const FuncionarioEdit = () =>{
         <label className='block'>Salario:</label>
         <input type='number' className=' border border-black py-2 px-3 w-60'  name="salFunc" value={funcionario.salFunc} onChange={(e) => handleChange(e)}></input>
         <p></p>
-        <button className='rounded bg-blue-400 hover:bg-blue-600 dark:bg-dblue dark:hover:bg-blue-800 w-20 h-8 mr-24 mt-5 mb-4' onClick={() => navigate("/")} >Voltar</button>
+        <button className='rounded bg-blue-400 hover:bg-blue-600 dark:bg-dblue dark:hover:bg-blue-800 w-20 h-8 mr-24 mt-5 mb-4' onClick={() => navigate("/funcionario")} >Voltar</button>
       </div>
       
       
@@ -143,9 +143,9 @@ const FuncionarioEdit = () =>{
                     <input type='date' className=' border border-black py-2 px-3 mb-3 w-60' name="birthPessoa" value={funcionario.pessoa.birthPessoa} onChange={(e) => handleChange(e)}></input>
                     
                     <label className='block'>Rua:</label>
-                    <input type='text' className=' border border-black py-2 px-3 mb-2 w-60' name="endereco" value={funcionario.pessoa.endereço.endereco} onChange={(e) => handleChange(e)}></input>
+                    <input type='text' className=' border border-black py-2 px-3 mb-2 w-60' name="endereco" value={funcionario.pessoa.endereco.endereco} onChange={(e) => handleChange(e)}></input>
                     <label className='block'>Bairo:</label>
-                    <input type='text' className=' border border-black py-2 px-3 mb-2 w-60' name="bairo" value={funcionario.pessoa.endereço.bairo} onChange={(e) => handleChange(e)}></input>
+                    <input type='text' className=' border border-black py-2 px-3 mb-2 w-60' name="bairo" value={funcionario.pessoa.endereco.bairo} onChange={(e) => handleChange(e)}></input>
                     <p></p>
                     <button className='rounded bg-green-400 hover:bg-green-600 dark:bg-dgreen dark:hover:bg-green-800  w-20 h-8 mt-3 ml-40 '  onClick={updateFuncionario}>Salvar</button>
                 </div>

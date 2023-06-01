@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from "react"
-import FuncionarioServ from "../Services/FuncionarioServ";
 import { useNavigate, useParams } from 'react-router-dom';
 import ClientesServ from "../Services/ClientesServ";
 
 
 const ClienteEdit = () =>{
 
-    const[loading,setLoading] =useState(true);
     const { id } = useParams();
     const navigate = useNavigate()
     const [pessoa, setPessoa] = useState({
@@ -16,7 +14,7 @@ const ClienteEdit = () =>{
             emailPessoa : "",
             docPessoa: "",
             birthPessoa : "",
-            endereço : {
+            endereco : {
                 idendereco: "",
                 endereco: "",
                 bairo: ""
@@ -26,17 +24,15 @@ const ClienteEdit = () =>{
 
     useEffect(() => {
         const fetchData = async () =>{
-          setLoading(true);
           try{
             const response = await ClientesServ.getPessoa(pessoa.id);
             setPessoa(response.data);
           }catch(error){
             console.log(error);
           }
-          setLoading(false);
         };
           fetchData();
-      },[])
+      },)
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -96,11 +92,11 @@ const ClienteEdit = () =>{
             </div>
             <div className='items-center justify-center h-14 w-full my-4'> 
                 <label className='block'>Rua:</label>
-                <input type='text' className=' border border-black py-2 px-3' name="endereco" value={pessoa.endereço.endereco} onChange={(e) => handleChange(e)}></input>
+                <input type='text' className=' border border-black py-2 px-3' name="endereco" value={pessoa.endereco.endereco} onChange={(e) => handleChange(e)}></input>
             </div>
             <div className='items-center justify-center h-14 w-full my-4'> 
                 <label className='block'>Bairo:</label>
-                <input type='text' className=' border border-black py-2 px-3' name="bairo" value={pessoa.endereço.bairo} onChange={(e) => handleChange(e)}></input>
+                <input type='text' className=' border border-black py-2 px-3' name="bairo" value={pessoa.endereco.bairo} onChange={(e) => handleChange(e)}></input>
             </div>
             <div className='items-center justify-center h-14 w-full my-4'>
                 <button className='rounded bg-green-400 hover:bg-green-600 dark:bg-dgreen dark:hover:bg-green-800  w-20 h-8 mr-5' onClick={updateCliente} >Salvar</button>

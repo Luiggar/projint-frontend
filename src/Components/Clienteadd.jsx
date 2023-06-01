@@ -14,7 +14,7 @@ const Clienteadd = () =>{
             emailPessoa : "",
             docPessoa: "",
             birthPessoa : "",
-            endereço : {
+            endereco : {
                 idendereco: "",
                 endereco: "",
                 bairo: ""
@@ -24,15 +24,26 @@ const Clienteadd = () =>{
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setPessoa(prevState => ({
-          ...prevState,
-          endereço: {
-            ...prevState.endereço,
+        
+        if (name.includes("endereco.")) {
+          const enderecoProperty = name.split(".")[1];
+          
+          setPessoa(prevState => ({
+            ...prevState,
+            endereco: {
+              ...prevState.endereco,
+              [enderecoProperty]: value,
+            },
+          }));
+        } else {
+          setPessoa(prevState => ({
+            ...prevState,
             [name]: value,
-          },
-          [name]: value
-        }));
-      }
+          }));
+        }
+
+        console.log(pessoa)
+      };
       const handlePhone = (e) => {
         const value = e.target.value;
         setPessoa({ ...pessoa, [e.target.name]: value.replace(/\D/g,"").substring(0-11).replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3') });
@@ -56,26 +67,7 @@ const Clienteadd = () =>{
 
 
 
-    const reset = (e) => {
-        e.preventDefault();
-        setPessoa({
-
-                id : "",
-                nomePessoa : "",
-                numPessoa : "",
-                emailPessoa : "",
-                docPessoa: "",
-                birthPessoa : "",
-                endereço : {
-                    idendereco: "",
-                    endereco: "",
-                    bairo: ""
-                }
-            }
-        );
-      };
-
-      
+       
 
     return (
         <div className='flex max-w-4xl shadow border mx-auto w-auto font-light tracking-widest bg-slate-100 dark:bg-gray-600  '>
@@ -105,11 +97,11 @@ const Clienteadd = () =>{
             </div>
             <div className='items-center justify-center h-14 w-full my-4'> 
                 <label className='block'>Rua:</label>
-                <input type='text' className=' border border-black py-2 px-3' name="endereco" value={pessoa.endereço.endereco} onChange={(e) => handleChange(e)} required></input>
+                <input type='text' className=' border border-black py-2 px-3' name="endereco.endereco" value={pessoa.endereco.endereco} onChange={(e) => handleChange(e)} required></input>
             </div>
             <div className='items-center justify-center h-14 w-full my-4'> 
                 <label className='block'>Bairo:</label>
-                <input type='text' className=' border border-black py-2 px-3' name="bairo" value={pessoa.endereço.bairo} onChange={(e) => handleChange(e)} required></input>
+                <input type='text' className=' border border-black py-2 px-3' name="endereco.bairo" value={pessoa.endereco.bairo} onChange={(e) => handleChange(e)} required></input>
             </div>
             <div className='items-center justify-center h-14 w-full my-4'>
                 <button className='rounded bg-green-400 hover:bg-green-600 dark:bg-dgreen dark:hover:bg-green-800  w-20 h-8 mr-5'  onClick={saveFunc}>Salvar</button>

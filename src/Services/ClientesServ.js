@@ -1,6 +1,7 @@
-import axios, { Axios } from "axios";
+import axios from "axios";
 
 const URL_DE_CLIENTE = "http://localhost:8080/api/v1/cliente";
+
 
 class ClientesServ{
     
@@ -22,6 +23,9 @@ class ClientesServ{
     }
     isFunc(id) {
         return axios.put(URL_DE_CLIENTE+ "/" + id)
+    }
+    funcId(id){
+        return axios.get(URL_DE_CLIENTE+"/find/"+id)
     }
 }
 
